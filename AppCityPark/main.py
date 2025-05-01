@@ -3,10 +3,14 @@ from fastapi import FastAPI
 from usuario_map import usuarioRouter
 from cargo_map import cargoRouter
 from fastapi.middleware.cors import CORSMiddleware
+from Tarea import TareaRouter  
 
 app = FastAPI()
 app.include_router(usuarioRouter)
 app.include_router(cargoRouter)
+app.include_router(TareaRouter)
+
+
 
 origins = [
     "http://localhost.tiangolo.com",

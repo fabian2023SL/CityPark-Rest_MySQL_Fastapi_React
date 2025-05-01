@@ -1,22 +1,24 @@
 from fastapi import APIRouter, HTTPException, status
 from pydantic import BaseModel
-from Clever_MySQL_conn import CleverCursor
+from Clever_MySQL_conn import cleverCursor, mysqlConn
+import datetime
+ 
 
-createTareaRouter = APIRouter()
+TareaRouter = APIRouter()
 
 class Tarea(BaseModel):
-    id_Tarea: int
-    id_cliente: int
-    Descripcion: str
-    Tipo : str
-    fecha_solicitud: str
-    fecha_finalizacion: str
+    id_tarea: str
+    id_cliente: str
+    descripcion: str
+    tipo : str
+    fecha_solicitud: datetime.date
+    fecha_finalizacion: datetime.date
     estado: str
-    personal_Mantenimiento: str
+    personal_mantenimiento: str
     
-@createTareaRouter.post("/tarea")
+@TareaRouter.post("/tarea")
 async def create_tarea(tarea: Tarea):
-    query = f"INSERT INTO Tarea (id_Tarea, id_cliente, Descripcion, Tipo, fecha_solicitud, fecha_finalizacion, estado, personal_Mantenimiento) VALUES ({tarea.id_Tarea}, {tarea.id_cliente}, '{tarea.Descripcion}', '{tarea.Tipo}', '{tarea.fecha_solicitud}', '{tarea.fecha_finalizacion}', '{tarea.estado}', '{tarea.personal_Mantenimiento}')"
-    CleverCursor.execute(query)
-    CleverCursor.commit()
+    query = f"INSERT INTO Tarea (id_Tarea, id_cliente, Descripcion, Tipo, fecha_solicitud, fecha_finalizacion, estado, personal_Mantenimiento) VALUES ({tarea.id_tarea}, {tarea.id_cliente}, '{tarea.descripcion}', '{tarea.tipo}', '{tarea.fecha_solicitud}', '{tarea.fecha_finalizacion}', '{tarea.estado}', '{tarea.personal_mantenimiento}')"
+    cleverCursor.execute(query)
+    mysqlConn.commit()
     return {"message": "Tarea created successfully"}
