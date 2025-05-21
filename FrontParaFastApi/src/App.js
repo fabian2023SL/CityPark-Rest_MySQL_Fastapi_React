@@ -1,12 +1,16 @@
-import FormCargo from "./components/FormCargo";
+import FormTarea from "./components/ArchFormTarea"; // Nombre del archivo
+import FormCliente from "./components/ArchFormCliente";
+
 
 
 function App() {
   return (
     <div className="App">
-          <FormCargo />
+          <FormTarea />
+          <FormCliente />
     </div>
   );
 }
 
 export default App;
+

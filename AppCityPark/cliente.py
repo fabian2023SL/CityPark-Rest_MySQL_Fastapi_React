@@ -1,19 +1,25 @@
 from fastapi import APIRouter, HTTPException, status
 from pydantic import BaseModel
-from Clever_MySQL_conn import CleverCursor
+from Clever_MySQL_conn import cleverCursor, mysqlConn
 
-createClienteRouter = APIRouter()
+
+ClienteRouter = APIRouter()
 
 class Cliente(BaseModel):
-    Id_Cliente: int
     Nombre: str
-    Apellido: str
+    Apellidos: str
     dirreccion: str
     telefono: str
     cod_personal: str
     solicitud_mantenimiento: str
 
-@createClienteRouter.post("/cliente")
+@ClienteRouter.post("/cliente")
 async def create_cliente(cliente: Cliente):
-    query = f"INSERT INTO Cliente (Id_Cliente, Nombre, Apellido, dirreccion, telefono, cod_personal, solicitud_mantenimiento) VALUES ({cliente.Id_Cliente}, '{cliente.Nombre}', '{cliente.Apellido}', '{cliente.dirreccion}', '{cliente.telefono}', '{cliente.cod_personal}', '{cliente.solicitud_mantenimiento}')"
+    query = f"INSERT INTO Cliente (Nombre, Apellidos, dirrecion, telefono, cod_personal, solicitud_mantenimiento) VALUES ('{cliente.Nombre}', '{cliente.Apellidos}', '{cliente.dirreccion}', '{cliente.telefono}', '{cliente.cod_personal}', '{cliente.solicitud_mantenimiento}')"
+    cleverCursor.execute(query)
+    mysqlConn.commit()
+    return {"message": "Cliente created successfully"}
+
+    
+    
     

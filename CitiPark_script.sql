@@ -17,7 +17,6 @@ Personal_Mantenimiento varchar(50)
 
 
 create table Cliente ( 
-Id_Cliente varchar(12) primary key,
 Nombre varchar (50) not null,
 Apellidos varchar (50) not null,
 Dirrecion varchar (50) not null,
