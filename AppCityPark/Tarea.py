@@ -16,7 +16,7 @@ class Tarea(BaseModel):
     estado: str
     personal_mantenimiento: str
     
-@TareaRouter.post("/tareaPost")
+@createTareaRouter.post("/tarea")
 async def create_tarea(tarea: Tarea):
     query = f"INSERT INTO Tarea (id_Tarea, id_cliente, Descripcion, Tipo, fecha_solicitud, fecha_finalizacion, estado, personal_Mantenimiento) VALUES ({tarea.id_tarea}, {tarea.id_cliente}, '{tarea.descripcion}', '{tarea.tipo}', '{tarea.fecha_solicitud}', '{tarea.fecha_finalizacion}', '{tarea.estado}', '{tarea.personal_mantenimiento}')"
     cleverCursor.execute(query)

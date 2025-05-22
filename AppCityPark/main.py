@@ -3,13 +3,20 @@ from fastapi import FastAPI
 from usuario_map import usuarioRouter
 from cargo_map import cargoRouter
 from fastapi.middleware.cors import CORSMiddleware
+<<<<<<< HEAD
 from Tarea import TareaRouter
 from cliente import ClienteRouter 
+=======
+from Tarea import TareaRouter  
+>>>>>>> 87480d9410d3fe8e1c296b3e32129ed2ac0ed65e
 
 app = FastAPI()
 app.include_router(usuarioRouter)
 app.include_router(cargoRouter)
+<<<<<<< HEAD
 app.include_router(ClienteRouter)
+=======
+>>>>>>> 87480d9410d3fe8e1c296b3e32129ed2ac0ed65e
 app.include_router(TareaRouter)
 
 
